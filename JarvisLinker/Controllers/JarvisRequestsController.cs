@@ -18,13 +18,13 @@ namespace JarvisLinker.Controllers
         // GET: api/JarvisRequests
         [HttpGet]
         public async Task<ActionResult<IEnumerable<JarvisRequest>>> GetRequests() =>
-            await _context.Requests.ToListAsync();
+            await _context.JarvisRequests.ToListAsync();
 
         // GET: api/JarvisRequests/5
         [HttpGet("{id}")]
         public async Task<ActionResult<JarvisRequest>> GetJarvisRequest(long id)
         {
-            var jarvisRequest = await _context.Requests.FindAsync(id);
+            var jarvisRequest = await _context.JarvisRequests.FindAsync(id);
             if (jarvisRequest == null) return NotFound();
             return jarvisRequest;
         }
@@ -54,7 +54,7 @@ namespace JarvisLinker.Controllers
         [HttpPost]
         public async Task<ActionResult<JarvisRequest>> PostJarvisRequest(JarvisRequest jarvisRequest)
         {
-            _context.Requests.Add(jarvisRequest);
+            _context.JarvisRequests.Add(jarvisRequest);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetJarvisRequest), new { id = jarvisRequest.Id }, jarvisRequest);
         }
@@ -63,14 +63,14 @@ namespace JarvisLinker.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteJarvisRequest(long id)
         {
-            var jarvisRequest = await _context.Requests.FindAsync(id);
+            var jarvisRequest = await _context.JarvisRequests.FindAsync(id);
             if (jarvisRequest == null) return NotFound();
 
-            _context.Requests.Remove(jarvisRequest);
+            _context.JarvisRequests.Remove(jarvisRequest);
             await _context.SaveChangesAsync();
             return NoContent();
         }
 
-        private bool JarvisRequestExists(long id) => _context.Requests.Any(e => e.Id == id);
+        private bool JarvisRequestExists(long id) => _context.JarvisRequests.Any(e => e.Id == id);
     }
 }

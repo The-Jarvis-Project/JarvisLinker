@@ -6,7 +6,10 @@ namespace JarvisLinker.Models
     {
         public JarvisLinkerContext(DbContextOptions<JarvisLinkerContext> options) : base(options) { }
 
-        public DbSet<JarvisRequest> Requests { get; set; }
-        public DbSet<JarvisResponse> Responses { get; set; }
+        public DbSet<JarvisRequest> JarvisRequests { get; set; }
+        public DbSet<JarvisResponse> JarvisResponses { get; set; }
+
+        public DbSet<BladeCmd> BladeCommands { get; set; }
+        public DbSet<BladeResponse> BladeResponses { get; set; }
     }
 }
