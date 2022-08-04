@@ -17,24 +17,24 @@ namespace JarvisLinker.Controllers
 
         // GET: api/BladeResponses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BladeResponse>>> GetBladeResponse() =>
+        public async Task<ActionResult<IEnumerable<BladeMsg>>> GetBladeResponse() =>
             await _context.BladeResponses.ToListAsync();
 
-        // GET: api/BladeResponses/5
+        // GET: api/BladeResponses/demo
         [HttpGet("{id}")]
-        public async Task<ActionResult<BladeResponse>> GetBladeResponse(long id)
+        public async Task<ActionResult<BladeMsg>> GetBladeResponse(string id)
         {
             var bladeResponse = await _context.BladeResponses.FindAsync(id);
             if (bladeResponse == null) return NotFound();
             return bladeResponse;
         }
 
-        // PUT: api/BladeResponses/5
+        // PUT: api/BladeResponses/demo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBladeResponse(long id, BladeResponse bladeResponse)
+        public async Task<IActionResult> PutBladeResponse(string id, BladeMsg bladeResponse)
         {
-            if (id != bladeResponse.Id) return BadRequest();
+            if (id != bladeResponse.Origin) return BadRequest();
             _context.Entry(bladeResponse).State = EntityState.Modified;
 
             try
@@ -52,16 +52,16 @@ namespace JarvisLinker.Controllers
         // POST: api/BladeResponses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<BladeResponse>> PostBladeResponse(BladeResponse bladeResponse)
+        public async Task<ActionResult<BladeMsg>> PostBladeResponse(BladeMsg bladeResponse)
         {
             _context.BladeResponses.Add(bladeResponse);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetBladeResponse), new { id = bladeResponse.Id }, bladeResponse);
+            return CreatedAtAction(nameof(GetBladeResponse), new { id = bladeResponse.Origin }, bladeResponse);
         }
 
-        // DELETE: api/BladeResponses/5
+        // DELETE: api/BladeResponses/demo
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBladeResponse(long id)
+        public async Task<IActionResult> DeleteBladeResponse(string id)
         {
             var bladeResponse = await _context.BladeResponses.FindAsync(id);
             if (bladeResponse == null) return NotFound();
@@ -71,6 +71,6 @@ namespace JarvisLinker.Controllers
             return NoContent();
         }
 
-        private bool BladeResponseExists(long id) => _context.BladeResponses.Any(e => e.Id == id);
+        private bool BladeResponseExists(string id) => _context.BladeResponses.Any(e => e.Origin == id);
     }
 }

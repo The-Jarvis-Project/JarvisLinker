@@ -17,24 +17,24 @@ namespace JarvisLinker.Controllers
 
         // GET: api/BladeCommands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BladeCmd>>> GetCommands() =>
+        public async Task<ActionResult<IEnumerable<BladeMsg>>> GetCommands() =>
             await _context.BladeCommands.ToListAsync();
 
-        // GET: api/BladeCommands/5
+        // GET: api/BladeCommands/demo
         [HttpGet("{id}")]
-        public async Task<ActionResult<BladeCmd>> GetBladeCmd(long id)
+        public async Task<ActionResult<BladeMsg>> GetBladeCmd(string id)
         {
             var bladeCmd = await _context.BladeCommands.FindAsync(id);
             if (bladeCmd == null) return NotFound();
             return bladeCmd;
         }
 
-        // PUT: api/BladeCommands/5
+        // PUT: api/BladeCommands/demo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBladeCmd(long id, BladeCmd bladeCmd)
+        public async Task<IActionResult> PutBladeCmd(string id, BladeMsg bladeCmd)
         {
-            if (id != bladeCmd.Id) return BadRequest();
+            if (id != bladeCmd.Origin) return BadRequest();
             _context.Entry(bladeCmd).State = EntityState.Modified;
 
             try
@@ -52,16 +52,16 @@ namespace JarvisLinker.Controllers
         // POST: api/BladeCommands
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<BladeCmd>> PostBladeCmd(BladeCmd bladeCmd)
+        public async Task<ActionResult<BladeMsg>> PostBladeCmd(BladeMsg bladeCmd)
         {
             _context.BladeCommands.Add(bladeCmd);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetBladeCmd), new { id = bladeCmd.Id }, bladeCmd);
+            return CreatedAtAction(nameof(GetBladeCmd), new { id = bladeCmd.Origin }, bladeCmd);
         }
 
-        // DELETE: api/BladeCommands/5
+        // DELETE: api/BladeCommands/demo
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBladeCmd(long id)
+        public async Task<IActionResult> DeleteBladeCmd(string id)
         {
             var bladeCmd = await _context.BladeCommands.FindAsync(id);
             if (bladeCmd == null) return NotFound();
@@ -71,6 +71,6 @@ namespace JarvisLinker.Controllers
             return NoContent();
         }
 
-        private bool BladeCmdExists(long id) => _context.BladeCommands.Any(e => e.Id == id);
+        private bool BladeCmdExists(string id) => _context.BladeCommands.Any(e => e.Origin == id);
     }
 }
