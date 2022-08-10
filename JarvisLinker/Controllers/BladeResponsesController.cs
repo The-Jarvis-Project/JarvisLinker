@@ -17,7 +17,7 @@ namespace JarvisLinker.Controllers
 
         // GET: api/BladeResponses
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BladeMsg>>> GetBladeResponse() =>
+        public async Task<ActionResult<IEnumerable<BladeMsg>>> GetBladeResponses() =>
             await _context.BladeResponses.ToListAsync();
 
         // GET: api/BladeResponses/demo
