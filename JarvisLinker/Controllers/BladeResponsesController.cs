@@ -9,11 +9,11 @@ namespace JarvisLinker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BladeResposesController : ControllerBase
+    public class BladeResponsesController : ControllerBase
     {
         private readonly JarvisLinkerContext _context;
 
-        public BladeResposesController(JarvisLinkerContext context) => _context = context;
+        public BladeResponsesController(JarvisLinkerContext context) => _context = context;
 
         // GET: api/BladeResponses
         [HttpGet]
