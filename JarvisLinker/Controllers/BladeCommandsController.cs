@@ -17,12 +17,12 @@ namespace JarvisLinker.Controllers
 
         // GET: api/BladeCommands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BladeMsg>>> GetCommands() =>
+        public async Task<ActionResult<IEnumerable<BladeMsgCmd>>> GetCommands() =>
             await _context.BladeCommands.ToListAsync();
 
         // GET: api/BladeCommands/demo
         [HttpGet("{id}")]
-        public async Task<ActionResult<BladeMsg>> GetBladeCmd(string id)
+        public async Task<ActionResult<BladeMsgCmd>> GetBladeCmd(string id)
         {
             var bladeCmd = await _context.BladeCommands.FindAsync(id);
             if (bladeCmd == null) return NotFound();
@@ -32,7 +32,7 @@ namespace JarvisLinker.Controllers
         // PUT: api/BladeCommands/demo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBladeCmd(string id, BladeMsg bladeCmd)
+        public async Task<IActionResult> PutBladeCmd(string id, BladeMsgCmd bladeCmd)
         {
             if (id != bladeCmd.Origin) return BadRequest();
             _context.Entry(bladeCmd).State = EntityState.Modified;
@@ -52,7 +52,7 @@ namespace JarvisLinker.Controllers
         // POST: api/BladeCommands
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<BladeMsg>> PostBladeCmd(BladeMsg bladeCmd)
+        public async Task<ActionResult<BladeMsgCmd>> PostBladeCmd(BladeMsgCmd bladeCmd)
         {
             _context.BladeCommands.Add(bladeCmd);
             await _context.SaveChangesAsync();

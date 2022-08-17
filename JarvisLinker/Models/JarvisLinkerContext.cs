@@ -9,7 +9,7 @@ namespace JarvisLinker.Models
         public DbSet<JarvisRequest> JarvisRequests { get; set; }
         public DbSet<JarvisResponse> JarvisResponses { get; set; }
 
-        public DbSet<BladeMsg> BladeCommands { get; set; }
-        public DbSet<BladeMsg> BladeResponses { get; set; }
+        public DbSet<BladeMsgCmd> BladeCommands { get; set; }
+        public DbSet<BladeMsgResponse> BladeResponses { get; set; }
     }
 }
